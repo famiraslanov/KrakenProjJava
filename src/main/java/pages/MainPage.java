@@ -8,14 +8,16 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class MainPage {
 
-    WebDriver driver = new ChromeDriver();
+    //WebDriver driver = new ChromeDriver();
 
-    Singletone.getDriver();
-    WebElement pricesButton = driver.findElement(By.xpath("//a[@href ='/prices' and text() = 'Prices']"));
-    WebElement uniqueAppStoreButton = driver.findElement(By.xpath("//a[@href = 'https://kraken.app.link/home-hero-ios']"));
+    WebElement pricesButton = getDriver().findElement(By.xpath("//a[@href ='/prices' and text() = 'Prices']"));
+    WebElement uniqueAppStoreButton = getDriver().findElement(By.xpath("//a[@href = 'https://kraken.app.link/home-hero-ios']"));
 
 
     public void clickPricesButton(){
         pricesButton.click();
+    }
+    private WebDriver getDriver(){
+        return Singletone.getDriver();
     }
 }

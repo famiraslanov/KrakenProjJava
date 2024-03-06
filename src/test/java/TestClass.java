@@ -1,3 +1,4 @@
+import browser.Singletone;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.BeforeClass;
@@ -5,6 +6,8 @@ import org.testng.annotations.Test;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import pages.MainPage;
+import utils.JsonUtils;
+import utils.SettingsConstants;
 
 public class TestClass {
 
@@ -12,13 +15,12 @@ public class TestClass {
 
     @BeforeClass
     public void setUp(){
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+        Singletone.getDriver().get(JsonUtils.getJsonValue(SettingsConstants._configJson, SettingsConstants._mainPageUrl));
+        Singletone.getDriver().manage().window().maximize();
 }
 
     @Test
     public void testMethod(){
-        driver.get("https://www.kraken.com/");
 
         MainPage mainPage = new MainPage();
         mainPage.clickPricesButton();
